@@ -13,7 +13,7 @@ def lol():
     text = request.args.get('text')
     return f'lol {text}'
 
-@app.route('/slack')
+@app.route('/slack', methods=['POST'])
 def slack():
     text = request.form.get('text')
     return f'lol {text}'
