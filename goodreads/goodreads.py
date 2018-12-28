@@ -1,4 +1,3 @@
-from goodreads import client
 import requests
 import xmltodict
 import os
