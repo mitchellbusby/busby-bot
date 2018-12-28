@@ -21,7 +21,6 @@ def slack():
     return f'lol {text}'
 
 # Will take a random book from your to-read list
-
 @app.route('/random_book', methods=['POST'])
 def random_book():
     try:
