@@ -1,1 +1,1 @@
-from goodreads import get_random_book_from_shelf
+from .goodreads import get_random_book_from_shelf
