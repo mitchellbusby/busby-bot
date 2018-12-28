@@ -1,3 +1,4 @@
+import traceback
 from flask import Flask, request
 from goodreads import get_random_book_from_shelf
 
@@ -25,8 +26,8 @@ def slack():
 def random_book():
     try:
         return get_random_book_from_shelf()
-    except Exception as err:
-        print(f'Error: {str(err)}')
+    except Exception:
+        traceback.print_exc()
         return "Failed to get random book from shelf."
 
 if __name__ == '__main__':
