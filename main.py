@@ -1,5 +1,5 @@
 from flask import Flask, request
-from .goodreads import get_random_book_from_shelf
+from goodreads import get_random_book_from_shelf
 
 app = Flask(__name__)
 
