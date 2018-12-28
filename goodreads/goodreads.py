@@ -14,7 +14,7 @@ def get_random_book_from_shelf():
     
     thing = ''
 
-    for key, value in reviews:
+    for key, value in reviews['review']
         thing = f'{key}, {value}'
 
     return thing
