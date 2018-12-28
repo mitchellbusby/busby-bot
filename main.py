@@ -26,7 +26,7 @@ def random_book():
     try:
         return get_random_book_from_shelf()
     except Exception as err:
-        print(err)
+        print(f'Error: {str(err)}')
         return "Failed to get random book from shelf."
 
 if __name__ == '__main__':
