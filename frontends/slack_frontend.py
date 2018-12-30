@@ -19,6 +19,7 @@ def get_bot_username():
       'token': SLACK_BEARER_TOKEN,
     }
   response = requests.post('https://slack.com/api/auth.test', json=body, headers=headers).json()
+  print(response)
   if response['ok']:
     # use user_id to get the bot id - helpful to test if has been mentioned if
     # more than the app_mention event is subscribed to
