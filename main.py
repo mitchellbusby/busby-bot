@@ -1,9 +1,7 @@
-import traceback
 from flask import Flask, request
-from goodreads import get_random_book_from_shelf
+import frontends
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -16,19 +14,8 @@ def lol():
     text = request.args.get('text')
     return f'lol {text}'
 
-@app.route('/slack', methods=['POST'])
-def slack():
-    text = request.form.get('text')
-    return f'lol {text}'
-
-# Will take a random book from your to-read list
-@app.route('/random_book', methods=['POST'])
-def random_book():
-    try:
-        return get_random_book_from_shelf()
-    except Exception:
-        traceback.print_exc()
-        return "Failed to get random book from shelf."
+# Register blueprints
+app.register_blueprint(frontends.slack_frontend.flask_blueprint, url_prefix='/slack')
 
 if __name__ == '__main__':
     app.run()
