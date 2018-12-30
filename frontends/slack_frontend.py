@@ -53,9 +53,9 @@ def slack_bot():
 
     # Check if it's the bot's message - ignore it
 
-    username = request.json['event'].get('user', '')
+    username = request.json['event'].get('username', '')
 
-    print(username)
+    print(request.json['event'])
 
     if get_bot_username() == username:
         return ''
