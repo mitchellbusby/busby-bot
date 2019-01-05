@@ -7,5 +7,5 @@ def handle_message(text, reply_func):
 
     if 'I want a book' in text:
         reply_func(get_random_book_from_shelf())
-
-    reply_func('gudday')
+    else:
+        reply_func('gudday')
