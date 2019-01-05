@@ -1,5 +1,5 @@
 import re
-import get_random_book_from_shelf from goodreads
+from goodreads import get_random_book_from_shelf
 
 # Grok and respond
 def handle_message(text, reply_func):
