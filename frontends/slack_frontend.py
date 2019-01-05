@@ -65,7 +65,7 @@ def slack_bot():
       return send_message(text, event_type, channel)
 
     # TODO: what field is the message?
-    handle_message('', reply)
+    handle_message(request.json['event']['text'], reply)
 
     return ''
 
