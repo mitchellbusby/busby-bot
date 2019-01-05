@@ -15,7 +15,7 @@ def handle_message(text, reply_func, state, context):
     if 'i want a book' in text or 'give me a book' in text:
         reset_ctx(context)
         reply_func(get_random_book_from_shelf())
-    else if 'is it available at the library' in text:
+    elif 'is it available at the library' in text:
         reply_func('Sorry, I don\'t know how to tell you that yet.')
     else if state == STATES["REQUESTED_BOOK"]:
         reply_func('Sorry - ask me to give you a book!')
