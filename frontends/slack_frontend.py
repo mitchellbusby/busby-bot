@@ -85,3 +85,7 @@ def random_book():
     except Exception:
         traceback.print_exc()
         return "Failed to get random book from shelf."
+
+
+state = 'NOTHING'
+context = None
