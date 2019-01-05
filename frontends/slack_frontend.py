@@ -3,7 +3,7 @@ import requests
 from flask import Blueprint, request
 from functools import lru_cache
 import traceback
-
+from bot import handle_message
 from goodreads import get_random_book_from_shelf
 
 SLACK_BEARER_TOKEN = os.environ.get('SLACK_BEARER_TOKEN')
@@ -52,10 +52,10 @@ def slack_bot():
     channel = request.json['event']['channel']
 
     # Check if it's the bot's message - ignore it
-
+    # This does not work at all!
     username = request.json['event'].get('username', '')
 
-    print(request.json['event'])
+    # print(request.json['event'])
 
     if get_bot_username() == username:
         return ''
@@ -64,7 +64,8 @@ def slack_bot():
       '''A reply is just a message back to the channel that messaged us.'''
       return send_message(text, event_type, channel)
 
-    reply('gudday')
+    # TODO: what field is the message?
+    handle_message('', reply)
 
     return ''
 
