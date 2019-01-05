@@ -17,7 +17,7 @@ def get_bot_username():
   }
   body = {
       'token': SLACK_BEARER_TOKEN,
-    }
+  }
   response = requests.post('https://slack.com/api/auth.test', json=body, headers=headers).json()
   print(response)
   if response['ok']:
@@ -43,7 +43,9 @@ flask_blueprint = Blueprint('slack_frontend', __name__)
 
 @flask_blueprint.route('/bot', methods=['GET', 'POST'])
 def slack_bot():
-    # TODO: verification
+    global state, context
+    if not context:
+      context = {}
     if request.json['type'] == 'url_verification':
         return request.json['challenge'] 
 
@@ -65,7 +67,7 @@ def slack_bot():
       return send_message(text, event_type, channel)
 
     # TODO: what field is the message?
-    handle_message(request.json['event']['text'], reply)
+    handle_message(request.json['event']['text'], reply, state, context)
 
     return ''
 
