@@ -23,6 +23,7 @@ def handle_message(text, reply_func, state, context):
     elif matches_library_query(text) != None:
         match_result = matches_library_query(text)
         keywords = match_result.group(0)
+        print(keywords)
         book_available = is_book_available(keywords)
         if book_available:
             reply_func('That book _is_ available.')
