@@ -13,6 +13,7 @@ def reset_ctx(ctx):
 # Grok and respond
 def handle_message(text, reply_func, state, context):
     text = text.lower()
+    print(text)
     if 'i want a book' in text or 'give me a book' in text:
         reset_ctx(context)
         reply_func(get_random_book_from_shelf())
