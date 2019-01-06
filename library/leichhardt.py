@@ -25,9 +25,8 @@ def search(title):
     text = response.json()
 
     resulting_xml = text["d"].replace('\r', '').replace('\n', '')
-    # print(resulting_xml)
 
-    ## TODO: beautifulsoup this thing
+
     ## TODO: Consider ISBN-filtering.
     soup = BeautifulSoup(resulting_xml, features='lxml')
     book = soup.html.body.newdataset.access
