@@ -18,7 +18,7 @@ def handle_message(text, reply_func, state, context):
         reply_func(get_random_book_from_shelf())
     elif 'is it available at the library' in text:
         reply_func('Sorry, I don\'t know how to tell you that yet.')
-    elif matches_library_query(text):
+    elif matches_library_query(text) != None:
         reply_func('Sorry, I cannot look up library books yet.')
     elif state == STATES["REQUESTED_BOOK"]:
         reply_func('Sorry - ask me to give you a book!')
