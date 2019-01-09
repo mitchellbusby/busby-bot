@@ -22,9 +22,11 @@ def handle_message(text, reply_func, state, context):
         reply_func('Sorry, I don\'t know how to tell you that yet.')
     elif matches_library_query(text) != None:
         match_result = matches_library_query(text)
-        keywords = match_result.group(0)
-        print(keywords)
-        book_available = is_book_available(keywords)
+        book_title = match_result.group('book_title')
+        print(book_title)
+        book_available = is_book_available(book_title)
+        ## TODO: disambiguate between a book being not available
+        ## and the book not being available at the library
         if book_available:
             reply_func('That book _is_ available.')
         else:
