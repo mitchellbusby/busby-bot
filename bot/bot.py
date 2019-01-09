@@ -1,7 +1,7 @@
 import re
 from goodreads import get_random_book_from_shelf
 from library import is_book_available
-from .matchers import matches_library_query
+from .matchers import matches_library_query, matches_greeting
 
 STATES = {
     'NOTHING': 'NOTHING',
@@ -33,5 +33,7 @@ def handle_message(text, reply_func, state, context):
             reply_func('That book is _not_ available.')
     elif state == STATES["REQUESTED_BOOK"]:
         reply_func('Sorry - ask me to give you a book!')
-    else:
+    elif matches_greeting(text):
         reply_func('G\'day! Ask me to give you a book!')
+    else:
+        reply_func('Not sure what you meant. Ask me to give you a book!')

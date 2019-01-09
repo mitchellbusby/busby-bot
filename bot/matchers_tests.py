@@ -1,8 +1,8 @@
 import unittest
 
-from .matchers import matches_library_query
+from .matchers import matches_library_query, matches_greeting
 
-class MatchersTests(unittest.TestCase):
+class LibraryMatcherTests(unittest.TestCase):
     def test_should_match_simple_query(self):
         s = "@busby_bot is 'the fault in our stars' available at the library"
 
@@ -11,7 +11,7 @@ class MatchersTests(unittest.TestCase):
         self.assertIsNotNone(result)
 
         title = result.group('book_title')
-        
+
         self.assertEqual('the fault in our stars', title)
 
     def test_should_match_annoying_apostrophes(self):
@@ -24,6 +24,22 @@ class MatchersTests(unittest.TestCase):
         title = result.group('book_title')
 
         self.assertEqual('atlas shrugged', title)
+
+class GreetingMatcherTests(unittest.TestCase):
+    def test_should_match_gday(self):
+        s = 'g\'day'
+
+        result = matches_greeting(s)
+
+        self.assertTrue(result)
+
+    def test_should_match_hi(self):
+        s = 'hi there'
+        
+        result = matches_greeting(s)
+
+        self.assertTrue(result)
+
 
 if __name__ == "__main__":
     unittest.main()
