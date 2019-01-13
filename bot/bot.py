@@ -33,6 +33,8 @@ def handle_message(text, reply_func, state, context):
         else:
             reply_func('That book is _not_ available.')
     elif matches_get_me_the_emoji(text) != None:
+
+        match_result = matches_get_me_the_emoji(text)
         match_result = match_result.group('emoji_query')
 
         emoji = get_nearest_emoji(match_result)
