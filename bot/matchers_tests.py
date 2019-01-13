@@ -1,6 +1,6 @@
 import unittest
 
-from .matchers import matches_library_query, matches_greeting
+from .matchers import matches_library_query, matches_greeting, matches_get_me_the_emoji
 
 class LibraryMatcherTests(unittest.TestCase):
     def test_should_match_simple_query(self):
@@ -40,6 +40,17 @@ class GreetingMatcherTests(unittest.TestCase):
 
         self.assertTrue(result)
 
+class EmojiTyperTests(unittest.TestCase):
+    def test_should_match_emoji(self):
+        s = '<@uf3gkblcb> get me the emoji for thinking face'
+
+        result = matches_get_me_the_emoji(s)
+
+        self.assertIsNotNone(result)
+
+        emoji_query = result.group('emoji_query')
+
+        self.assertEqual('thinking face', emoji_query)
 
 if __name__ == "__main__":
     unittest.main()

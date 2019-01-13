@@ -1,7 +1,8 @@
 import re
 from goodreads import get_random_book_from_shelf
 from library import is_book_available
-from .matchers import matches_library_query, matches_greeting
+from emojityper import get_nearest_emoji
+from .matchers import matches_library_query, matches_greeting, matches_get_me_the_emoji
 
 STATES = {
     'NOTHING': 'NOTHING',
@@ -31,6 +32,12 @@ def handle_message(text, reply_func, state, context):
             reply_func('That book _is_ available.')
         else:
             reply_func('That book is _not_ available.')
+    elif matches_get_me_the_emoji(text) != None:
+        match_result = match_result.group('emoji_query')
+
+        emoji = get_nearest_emoji(match_result)
+        reply_func(emoji)
+
     elif state == STATES["REQUESTED_BOOK"]:
         reply_func('Sorry - ask me to give you a book!')
     elif matches_greeting(text):
