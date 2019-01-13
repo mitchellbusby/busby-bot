@@ -11,7 +11,7 @@ def get_nearest_emoji(query):
 
     if len(results) > 0:
         # Get only the first result
-        name, emoji = results[0]
+        name, emoji = results[0][:2]
         return emoji
     
     return 'Could not find an emoji'
